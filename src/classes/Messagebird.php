@@ -1,6 +1,6 @@
 <?php
 
-namespace AshrafSaeed\Messagebird;
+namespace AshrafSaeed\Classes\Messagebird;
 
 class Messagebird
 {
