@@ -30,7 +30,7 @@ class TextMessageServiceProvider extends ServiceProvider
         $this->app->bind('textmessage', function($app){
             
             $client = new \MessageBird\Client($app['config']['messagebird']['access_key']);
-            return new textmessage($client);
+            return new TextMessageClient($client);
             
         }, true);
 

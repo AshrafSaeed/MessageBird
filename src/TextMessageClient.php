@@ -1,6 +1,6 @@
 <?php
 
-namespace AshrafSaeed\TextMessage;
+namespace AshrafSaeed\TextMessageClient;
 
 class TextMessageClient {
 
