@@ -1,11 +1,11 @@
 <?php
 
-namespace AshrafSaeed\TextMessageClient;
+namespace AshrafSaeed\TextMessage;
+
 
 class TextMessageClient {
 
-    public $client;
-    public $errorMessages = []; 
+    protected $client;
  
  	public function __construct($client)
     {
@@ -15,9 +15,10 @@ class TextMessageClient {
     /**
      *
      */
-    public function getErrorMessages()
-    {
+    public function sendMessage() {
 
-    	echo $this->client;
+    	return $this->client;
+
     }
+
 }

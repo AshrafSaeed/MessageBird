@@ -4,7 +4,7 @@ namespace AshrafSaeed\TextMessage\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class TextMessageFacade extends Facade
+class TextMessage extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +13,6 @@ class TextMessageFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'TextMessage';
+        return 'textmessage'; 
     }
 }
