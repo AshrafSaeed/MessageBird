@@ -3,6 +3,8 @@
 namespace AshrafSaeed\TextMessage;
 
 use Illuminate\Support\ServiceProvider;
+use AshrafSaeed\TextMessage\Facades;
+
 
 class TextMessageServiceProvider extends ServiceProvider
 {
@@ -29,20 +31,10 @@ class TextMessageServiceProvider extends ServiceProvider
 
         $this->app->bind('textmessage', function($app){
             
-            $client = new \MessageBird\Client($app['config']['messagebird']['access_key']);
+            $client = $app['config']['messsagebird']['access_key'];
             return new TextMessageClient($client);
-            
-        }, true);
 
-        //$this->app->bind('Packages\TextMessage\Src\TextMessage::class' , function($app){ 
-            
-            //dd($app);
-//echo 'ddddd';
-            //$client = new \TextMessage\Client($app['config']['textmessage']['access_key']);
-            //return new TextMessage($client);
-       // });
-
-        $this->app->alias('textmessage', 'AshrafSaeed\TextMessage\TextMessageClient');
+        });
 
     }
 
