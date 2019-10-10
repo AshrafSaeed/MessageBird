@@ -1,6 +1,6 @@
 <?php
 
-namespace AshrafSaeed\TextMessage\Common;
+namespace AshrafSaeed\MessageBird\Common;
 
 use GuzzleHttp\Client;
 

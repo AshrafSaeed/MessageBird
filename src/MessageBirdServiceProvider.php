@@ -1,14 +1,14 @@
 <?php
 
-namespace AshrafSaeed\TextMessage;
+namespace AshrafSaeed\MessageBird;
 
 use GuzzleHttp\Client;
 
 use Illuminate\Support\ServiceProvider;
 
-use AshrafSaeed\TextMessage\TextMessageClient;
+use AshrafSaeed\MessageBird\MessageBirdClient;
 
-class TextMessageServiceProvider extends ServiceProvider
+class MessageBirdServiceProvider extends ServiceProvider
 {
     /**
      * creating registration of textmessage in booting of servicesprovider.
@@ -31,11 +31,10 @@ class TextMessageServiceProvider extends ServiceProvider
     public function register()
     {   
 
-        $this->app->bind('textmessage', function($app){
+        $this->app->bind('MessageBird', function($app){
 
-            return new TextMessageClient(
-                $app['config']['textmessage']['active'], 
-                $app['config']['textmessage']['systems']
+            return new MessageBirdClient(
+                $app['config']['messagebird']['access_key']
             );
 
         });

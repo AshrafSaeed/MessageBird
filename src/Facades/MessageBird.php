@@ -1,10 +1,10 @@
 <?php
 
-namespace AshrafSaeed\TextMessage\Facades;
+namespace AshrafSaeed\MessageBird\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class TextMessage extends Facade
+class MessageBird extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +13,6 @@ class TextMessage extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'textmessage'; 
+        return 'MessageBird'; 
     }
 }

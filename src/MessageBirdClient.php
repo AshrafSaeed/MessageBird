@@ -1,11 +1,11 @@
 <?php
 
-namespace AshrafSaeed\TextMessage\Resources;
+namespace AshrafSaeed\MessageBird;
 
-use AshrafSaeed\TextMessage\Common\HttpClient;
+use AshrafSaeed\MessageBird\Common\HttpClient;
 
 class MessageBirdClient {
-
+   
     public $access_key;
     public $body;
     public $originator;
@@ -52,7 +52,7 @@ class MessageBirdClient {
         return json_encode($this);
     }
     
-    public function createMessage($originator, $recipients = [], $body) {
+    public function sendTo( $recipients = [], $body, $originator ) {
 
         $this->setOriginator($originator);
         $this->setRecipients($recipients);
@@ -65,5 +65,6 @@ class MessageBirdClient {
         return $objHttpClient->httpRequest('https://rest.messagebird.com/messages', $this->toJson());
 
     }
-   
+
+
 }
