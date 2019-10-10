@@ -2,6 +2,8 @@
 
 namespace AshrafSaeed\TextMessage;
 
+use GuzzleHttp\Client;
+
 use Illuminate\Support\ServiceProvider;
 
 use AshrafSaeed\TextMessage\TextMessageClient;
@@ -30,9 +32,11 @@ class TextMessageServiceProvider extends ServiceProvider
     {   
 
         $this->app->bind('textmessage', function($app){
-            //echo 'ddd';
-            $client = $app['config']['textmessage']['active'];
-            return new TextMessageClient($client);
+
+            return new TextMessageClient(
+                $app['config']['textmessage']['active'], 
+                $app['config']['textmessage']['systems']
+            );
 
         });
 
