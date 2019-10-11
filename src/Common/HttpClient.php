@@ -3,6 +3,8 @@
 namespace AshrafSaeed\MessageBird\Common;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
+
 
 class HttpClient {
 
@@ -18,9 +20,9 @@ class HttpClient {
 
         try {
 
-            $Client = new client();
+            $Client = new Client();
 
-            $response = $Client->request('POST', $requestUrl, [
+            $request = $Client->request('POST', $requestUrl, [
                 'body' => $jsonData,
                 'headers' => [
                     'content-type' => 'application/json',
@@ -29,12 +31,17 @@ class HttpClient {
                 ],
             ]);
 
-            return json_encode($response);
+            return json_encode($request);
 
+        } catch (BadResponseException $ex) {
+            
+            $response = $ex->getResponse();
+            return (string) $response->getBody();
+            
         } catch (Exception $exception) {
             
-            throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
-        
+            return (string)$e->getResponse()->getBody();
+
         }
 
     }

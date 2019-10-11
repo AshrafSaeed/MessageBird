@@ -2,7 +2,7 @@
 
 return [
 
-	 /*
+    /*
     |--------------------------------------------------------------------------
     | Third Party Services
     |--------------------------------------------------------------------------
@@ -14,22 +14,7 @@ return [
     |
     */
 
-	$defaultname = 'messsagebird';
+    'access_key' => 'test_gshuPaZoeEG6ovbc8M79w0QyM',
+    'originator' => 'Avanix Solutions',
 
-	'messsagebird' => [
-        'access_key' => 'NqTN0Wq4kS0QLBfaIjChY0Vr2',
-    ],
-
-    'clickatel' => [
-        'access_key' => env('MAILGUN_DOMAIN'),
-    ],
-
-    'neximo' => [
-        'access_key' => env('MAILGUN_DOMAIN'),
-    ],
-
-    'stripe' => [
-        'access_key' => env('MAILGUN_DOMAIN'),
-    ]
-
-]
+];
