@@ -4,12 +4,19 @@ namespace AshrafSaeed\MessageBird;
 
 use AshrafSaeed\MessageBird\Common\HttpClient;
 
+use AshrafSaeed\MessageBird\Objects\Object;
+
 class MessageBirdClient {
 
-    public $access_key;
-    public $body;
-    public $originator;
-    public $recipients;
+    use Object;
+
+    const SMS_END_POINT = 'https://rest.messagebird.com/messages';
+    const BAL_END_POINT = 'https://rest.messagebird.com/balance';
+    const HLR_END_POINT = 'https://rest.messagebird.com/hlr';
+ 
+
+    private $access_key;
+    private $Object;
 
     /**
      *
@@ -23,62 +30,7 @@ class MessageBirdClient {
     /**
      *
      */
-    public function setBody($body) {
-
-        $this->body = trim($body);
-        return $this;
-    
-    }
-
-    /**
-     *
-     */
-    public function setOriginator($originator) {
-    
-        $this->originator = $originator;
-    
-        return $this;
-    
-    }
-
-    /**
-     *
-     */
-    public function setRecipients($recipients) {
-
-        if (is_array($recipients)) {
-            $recipients = implode(',', $recipients);
-        }
-        
-        $this->recipients = $recipients;
-        
-        return $this;
-
-    }
-
-    /**
-     *
-     */
-    public function setDatacoding($datacoding) {
- 
-        $this->datacoding = $datacoding;
-        return $this;
- 
-    }
-        
-    /**
-     *
-     */
-    public function toJson() {
-
-        return json_encode($this);
-    
-    }
-    
-    /**
-     *
-     */
-    public function sendTo( $recipients = [], $body, $originator ) {
+    public function sendMessage( $recipients = [], $body, $originator ) {
 
         $this->setOriginator($originator);
         $this->setRecipients($recipients);
@@ -87,7 +39,7 @@ class MessageBirdClient {
 
         $objHttpClient = new HttpClient($this->access_key);
 
-        return $objHttpClient->httpRequest('https://rest.messagebird.com/messages', $this->toJson());
+        return $objHttpClient->httpRequest(self::SMS_END_POINT, $this->getJson());
 
     }
 
@@ -97,7 +49,7 @@ class MessageBirdClient {
     public function getBalance() {
 
         $objHttpClient = new HttpClient($this->access_key);
-        return $objHttpClient->httpRequest('https://rest.messagebird.com/balance', json_encode([]));
+        return $objHttpClient->httpRequest(self::BAL_END_POINT, json_encode([]));
     
     }
 
@@ -107,7 +59,7 @@ class MessageBirdClient {
     public function sendHlr($msisdn = NULL)
     {
         $objHttpClient = new HttpClient($this->access_key);
-        return $objHttpClient->httpRequest('https://rest.messagebird.com/hlr', json_encode(['msisdn' => $msisdn]));
+        return $objHttpClient->httpRequest(self::HLR_END_POINT, json_encode(['msisdn' => $msisdn]));
     
     }
 
